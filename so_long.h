@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/06 18:51:29 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/11 22:09:36 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include "libft/libft.h"
 # include "Get-Next-Line/get_next_line.h"
 
+typedef struct s_info {
+	int	p_x;
+	int	p_y;
+}	t_info;
+
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
@@ -24,5 +29,6 @@ char	*ft_strchr(const char *s, int c);
 int		checkwall(char **line, int count, int len);
 int		parsing(char **line, int count, int len, char *sjoin);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+int		check_path(char **divide);
 
 #endif

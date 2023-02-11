@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/06 20:56:37 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/11 22:23:52 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	readmap(int fd, char *linemap, int len)
 		printf("valid");
 	else
 		printf("not valide");
+	if (!check_path(divide))
+		printf("pathe not valid");
 	// free_all(divide);
 }
 
@@ -83,35 +85,20 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (check_arg(argv[1]))
-			printf ("name file not valide");
-		fd = open("map.ber", O_RDONLY);
+			printf ("map description file must end with the .ber extension ");
+		fd = open(argv[1], O_RDONLY);
 		if (fd == -1)
+		{
+			printf("error in name of map");
 			exit(1);
+		}
 		linemap = get_next_line(fd);
 		len = ft_strlen(linemap);
 		readmap(fd, linemap, len);
 		// system("leaks a.out");
 	}
 	else
-		printf("error in arguments");
+		printf("numbre of arguments is not correct");
 	return (0);
 }
 
-// void	ft_count_line (fd)
-// {
-// 	while (1) {
-// 		if (gnl(fd) == NULL)
-// 			break ;
-// 		count++;
-// 	}
-// 	rtn (cnt);
-// }
-
-// map[i] = gnl(fd);
-
-// map[0] != '1'
-
-// map[len] != '1';
-
-// map[i][0] != '1';
-// map[i][len] != '1';

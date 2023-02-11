@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 09:25:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/06 19:25:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:17:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	parsing(char **line, int count, int len, char *sjoin)
 {
 	if (!check_wall_cpn(line, count, len))
 	{
-		printf("map not closed by walls or composed na9s");
+		printf("map not closed by walls or component not found");
 		return (0);
 	}
 	if (!check_nbcpn(sjoin, count, len))
