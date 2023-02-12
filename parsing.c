@@ -6,12 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 09:25:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/07 15:17:24 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/12 10:56:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 int	check_wall_cpn(char **line, int count, int len)
 {
@@ -88,17 +87,17 @@ int	parsing(char **line, int count, int len, char *sjoin)
 {
 	if (!check_wall_cpn(line, count, len))
 	{
-		printf("map not closed by walls or component not found");
+		ft_printf("map not closed by walls or component not found");
 		return (0);
 	}
 	if (!check_nbcpn(sjoin, count, len))
 	{
-		printf("number of components not valid");
+		ft_printf("number of components not valid");
 		return (0);
 	}
 	if (!check_regt(line, count, len))
 	{
-		printf("The map is not rectangular");
+		ft_printf("The map is not rectangular");
 		return (0);
 	}
 	return (1);

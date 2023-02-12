@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/11 22:09:36 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:06:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,20 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 # include "Get-Next-Line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
+# include <mlx.h>
+# include <stdlib.h>
 
 typedef struct s_info {
-	int	p_x;
-	int	p_y;
+	int		p_x;
+	int		p_y;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*player;
+	void	*collect;
+	void	*exit;
+	void	*wall;
+	void	*space;
 }	t_info;
 
 char	*get_next_line(int fd);
@@ -29,6 +39,8 @@ char	*ft_strchr(const char *s, int c);
 int		checkwall(char **line, int count, int len);
 int		parsing(char **line, int count, int len, char *sjoin);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		check_path(char **divide);
+int		check_path(char **divide, t_info *game);
+void	ft_graphic(char **divide, t_info *game);
+
 
 #endif

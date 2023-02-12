@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 18:24:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/12 21:00:50 by mel-kouc         ###   ########.fr       */
+/*   Created: 2022/11/12 11:35:47 by mel-kouc          #+#    #+#             */
+/*   Updated: 2022/11/13 18:20:21 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <mlx.h>
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	ft_graphic(char **divide, t_info *game)
+void	ft_putchar(char c, int *count)
 {
-	
-	game->mlx_ptr = mlx_init();
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 1029, 1090, "test");
-	mlx_loop(game->mlx_ptr);
-	// free(mlx_ptr);
-	//1) i must initialyse the components
-	//1) 
+	write(1, &c, 1);
+	*count += 1;
 }

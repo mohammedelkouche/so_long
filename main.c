@@ -6,12 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/11 22:23:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:44:18 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 // void	free_all(char **map)
 // {
@@ -55,6 +54,7 @@ void	readmap(int fd, char *linemap, int len)
 	static char	*sjoin;
 	char		**divide;
 	int			count;
+	t_info		*game;
 
 	count = 0;
 	if (!sjoin)
@@ -67,12 +67,11 @@ void	readmap(int fd, char *linemap, int len)
 		linemap = get_next_line(fd);
 	}
 	divide = ft_split(sjoin, '\n');
-	if (parsing(divide, count, len, sjoin))
-		printf("valid");
-	else
-		printf("not valide");
-	if (!check_path(divide))
-		printf("pathe not valid");
+	if (!parsing(divide, count, len, sjoin))
+		return ;
+	if (!check_path(divide, game))
+		ft_printf("pathe not valid");
+	ft_graphic(divide, game);
 	// free_all(divide);
 }
 
@@ -85,11 +84,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (check_arg(argv[1]))
-			printf ("map description file must end with the .ber extension ");
+			ft_printf("map description file must end with the .ber extension ");
 		fd = open(argv[1], O_RDONLY);
 		if (fd == -1)
 		{
-			printf("error in name of map");
+			ft_printf("error in name of map");
 			exit(1);
 		}
 		linemap = get_next_line(fd);
@@ -98,7 +97,8 @@ int	main(int argc, char **argv)
 		// system("leaks a.out");
 	}
 	else
-		printf("numbre of arguments is not correct");
+		ft_printf("numbre of arguments is not correct");
 	return (0);
 }
 
+// gcc -lmlx -framework OpenGL -framework AppKit main.c Get-Next-Line/get_next_line.c Get-Next-Line/get_next_line_utils.c   libft/ft_split.c libft/ft_strchr.c parsing.c map_path.c ft_printf/ft_printf.c ft_printf/ft_putstr.c ft_printf/ft_putchar.c ft_printf/ft_format.c ft_printf/ft_putadrs.c ft_printf/ft_putnb_hexa.c ft_printf/ft_putnb_u.c ft_printf/ft_putnbr.c window.c
