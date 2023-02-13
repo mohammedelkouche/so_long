@@ -6,15 +6,14 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 09:25:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/12 10:56:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:37:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_wall_cpn(char **line, int count, int len)
+int	check_wall_cpn(t_info *game, int count, int len, int i)
 {
-	int	i;
 	int	j;
 
 	i = -1;
@@ -25,16 +24,17 @@ int	check_wall_cpn(char **line, int count, int len)
 		{
 			if (i == 0 || i == (count - 1))
 			{
-				if (line[i][j] != '1')
+				if (game->divide[i][j] != '1')
 					return (0);
 			}
 			if (j == 0 || j == len - 2)
 			{
-				if (line[i][j] != '1' || line[i][j] != '1')
+				if (game->divide[i][j] != '1' || game->divide[i][j] != '1')
 					return (0);
 			}
-			if (line[i][j] != '1' && line[i][j] != '0' && line[i][j] != 'E'
-			&& line[i][j] != 'P' && line[i][j] != 'C')
+			if (game->divide[i][j] != '1' && game->divide[i][j] != '0' &&
+			game->divide[i][j] != 'E' && game->divide[i][j] != 'P' &&
+			game->divide[i][j] != 'C')
 				return (0);
 		}
 	}
@@ -67,14 +67,14 @@ int	check_nbcpn(char *sjoin, int count, int len)
 	return (1);
 }
 
-int	check_regt(char **line, int count, int len)
+int	check_regt(t_info *game, int count, int len)
 {
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (game->divide[i])
 	{
-		if (strlen(line[i]) != (len - 1))
+		if (strlen(game->divide[i]) != (len - 1))
 			return (0);
 		i++;
 	}
@@ -83,11 +83,13 @@ int	check_regt(char **line, int count, int len)
 	return (1);
 }
 
-int	parsing(char **line, int count, int len, char *sjoin)
+int	parsing(t_info *game, int count, int len, char *sjoin)
 {
-	if (!check_wall_cpn(line, count, len))
+	int	i;
+
+	if (!check_wall_cpn(game, count, len, i))
 	{
-		ft_printf("map not closed by walls or component not found");
+		ft_printf("map not closed by walls or wrong component");
 		return (0);
 	}
 	if (!check_nbcpn(sjoin, count, len))
@@ -95,7 +97,7 @@ int	parsing(char **line, int count, int len, char *sjoin)
 		ft_printf("number of components not valid");
 		return (0);
 	}
-	if (!check_regt(line, count, len))
+	if (!check_regt(game, count, len))
 	{
 		ft_printf("The map is not rectangular");
 		return (0);

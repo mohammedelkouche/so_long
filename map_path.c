@@ -6,24 +6,24 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 11:38:08 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/12 13:15:31 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:41:17 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	player_position(t_info *game, char **divide)
+void	player_position(t_info *game)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (divide[++i])
+	while (game->divide[++i])
 	{
 		j = -1;
-		while (divide[i][++j])
+		while (game->divide[i][++j])
 		{
-			if (divide[i][j] == 'P')
+			if (game->divide[i][j] == 'P')
 			{
 				game->p_x = j;
 				game->p_y = i;
@@ -32,40 +32,39 @@ void	player_position(t_info *game, char **divide)
 	}
 }
 
-void	floodfill(char **divide, int p_y, int p_x)
+void	floodfill(t_info *game, int p_y, int p_x)
 {
-	if (divide [p_y][p_x] == '1' || divide [p_y][p_x] == 'E' ||
-	divide [p_y][p_x] == 'A')
+	if (game->divide [p_y][p_x] == '1' || game->divide [p_y][p_x] == 'E' ||
+	game->divide [p_y][p_x] == 'A')
 		return ;
-	if (divide [p_y][p_x] != 'P')
-		divide [p_y][p_x] = 'A';
-	floodfill(divide, p_y + 1, p_x);
-	floodfill(divide, p_y - 1, p_x);
-	floodfill(divide, p_y, p_x + 1);
-	floodfill(divide, p_y, p_x - 1);
+	if (game->divide [p_y][p_x] != 'P')
+		game->divide [p_y][p_x] = 'A';
+	floodfill(game, p_y + 1, p_x);
+	floodfill(game, p_y - 1, p_x);
+	floodfill(game, p_y, p_x + 1);
+	floodfill(game, p_y, p_x - 1);
 }
 
-// verifier s'il exist 'C' nom replacer par 'A' and  chack 'E' s'il est 
+// verifier s'il exist 'C' nom replacer par 'A' and  check 'E' s'il est
 // un de c'est cote se retrouve 'A'
-int	check_path(char **divide, t_info *game)
+int	check_path(t_info *game)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	game = malloc(sizeof(t_info));
-	player_position(game, divide);
-	floodfill(divide, game->p_y, game->p_x);
-	while (divide[++i])
+	player_position(game);
+	floodfill(game, game->p_y, game->p_x);
+	while (game->divide[++i])
 	{
 		j = -1;
-		while (divide[i][++j])
+		while (game->divide[i][++j])
 		{
-			if (divide[i][j] == 'C')
+			if (game->divide[i][j] == 'C')
 				return (0);
-			if (divide[i][j] == 'E' && divide[i + 1][j] != 'A' &&
-			divide[i - 1][j] != 'A' && divide[i][j + 1] != 'A' &&
-			divide[i][j - 1] != 'A')
+			if (game->divide[i][j] == 'E' && game->divide[i + 1][j] != 'A' &&
+			game->divide[i - 1][j] != 'A' && game->divide[i][j + 1] != 'A' &&
+			game->divide[i][j - 1] != 'A')
 				return (0);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/12 21:44:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:01:39 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,10 @@ int	check_arg(char *arg)
 }
 
 // read map , push it in array 2 dimention
-void	readmap(int fd, char *linemap, int len)
+void	readmap(int fd, char *linemap, int len, t_info *game)
 {
 	static char	*sjoin;
-	char		**divide;
 	int			count;
-	t_info		*game;
 
 	count = 0;
 	if (!sjoin)
@@ -66,12 +64,15 @@ void	readmap(int fd, char *linemap, int len)
 		free(linemap);
 		linemap = get_next_line(fd);
 	}
-	divide = ft_split(sjoin, '\n');
-	if (!parsing(divide, count, len, sjoin))
+	game->divide = ft_split(sjoin, '\n');
+	if (!parsing(game, count, len, sjoin))
 		return ;
-	if (!check_path(divide, game))
+	if (!check_path(game))
+	{
 		ft_printf("pathe not valid");
-	ft_graphic(divide, game);
+		return ;
+		// exit(1);
+	}
 	// free_all(divide);
 }
 
@@ -80,6 +81,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	*linemap;
 	int		len;
+	t_info	game;
 
 	if (argc == 2)
 	{
@@ -93,7 +95,8 @@ int	main(int argc, char **argv)
 		}
 		linemap = get_next_line(fd);
 		len = ft_strlen(linemap);
-		readmap(fd, linemap, len);
+		readmap(fd, linemap, len, &game);
+		ft_graphic(&game);
 		// system("leaks a.out");
 	}
 	else

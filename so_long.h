@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/12 19:06:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:53:31 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 
 typedef struct s_info {
+	char	**divide;
 	int		p_x;
 	int		p_y;
 	void	*mlx_ptr;
@@ -37,10 +38,10 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 int		checkwall(char **line, int count, int len);
-int		parsing(char **line, int count, int len, char *sjoin);
+int		parsing(t_info *game, int count, int len, char *sjoin);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		check_path(char **divide, t_info *game);
-void	ft_graphic(char **divide, t_info *game);
+int		check_path(t_info *game);
+void	ft_graphic(t_info *game);
 
 
 #endif
