@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/13 11:53:31 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/14 21:21:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,23 @@
 # include "ft_printf/ft_printf.h"
 # include <mlx.h>
 # include <stdlib.h>
+#include <stdio.h>
 
 typedef struct s_info {
 	char	**divide;
 	int		p_x;
 	int		p_y;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*player;
-	void	*collect;
-	void	*exit;
-	void	*wall;
-	void	*space;
+	int		w;
+	int		h;
+	void	*mlx;
+	void	*win;
+	void	*ply;
+	void	*clt;
+	void	*ex;
+	void	*wal;
+	void	*sp;
+	int		wid;
+	int		het;
 }	t_info;
 
 char	*get_next_line(int fd);
