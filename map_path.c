@@ -6,11 +6,24 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 11:38:08 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/14 15:38:34 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:32:21 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_all(char **map)
+{
+	int	index;
+
+	index = 0;
+	while (map[index])
+	{
+		free(map[index]);
+		index++;
+	}
+	free(map);
+}
 
 void	player_position(t_info *game)
 {
@@ -18,31 +31,31 @@ void	player_position(t_info *game)
 	int	j;
 
 	i = -1;
-	while (game->divide[++i])
+	while (game->map[++i])
 	{
 		j = -1;
-		while (game->divide[i][++j])
+		while (game->map[i][++j])
 		{
-			if (game->divide[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 			{
-				game->p_x = j;
-				game->p_y = i;
+				game->px = j;
+				game->py = i;
 			}
 		}
 	}
 }
 
-void	floodfill(t_info *game, int p_y, int p_x)
+
+void	floodfill(t_info *game, int py, int px)
 {
-	if (game->divide [p_y][p_x] == '1' || game->divide [p_y][p_x] == 'E' ||
-	game->divide [p_y][p_x] == 'A')
+	if (game->map_cpy[py][px] == '1' || game->map_cpy[py][px] == 'E' ||
+	game->map_cpy[py][px] == 'A')
 		return ;
-	if (game->divide [p_y][p_x] != 'P')
-		game->divide [p_y][p_x] = 'A';
-	floodfill(game, p_y + 1, p_x);
-	floodfill(game, p_y - 1, p_x);
-	floodfill(game, p_y, p_x + 1);
-	floodfill(game, p_y, p_x - 1);
+	game->map_cpy[py][px] = 'A';
+	floodfill(game, py + 1, px);
+	floodfill(game, py - 1, px);
+	floodfill(game, py, px + 1);
+	floodfill(game, py, px - 1);
 }
 
 // verifier s'il exist 'C' nom replacer par 'A' and  check 'E' s'il est
@@ -54,17 +67,17 @@ int	check_path(t_info *game)
 
 	i = -1;
 	player_position(game);
-	floodfill(game, game->p_y, game->p_x);
-	while (game->divide[++i])
+	floodfill(game, game->py, game->px);
+	while (game->map_cpy[++i])
 	{
 		j = -1;
-		while (game->divide[i][++j])
+		while (game->map_cpy[i][++j])
 		{
-			if (game->divide[i][j] == 'C')
+			if (game->map_cpy[i][j] == 'C')
 				return (0);
-			if (game->divide[i][j] == 'E' && game->divide[i + 1][j] != 'A' &&
-			game->divide[i - 1][j] != 'A' && game->divide[i][j + 1] != 'A' &&
-			game->divide[i][j - 1] != 'A')
+			if (game->map_cpy[i][j] == 'E' && game->map_cpy[i + 1][j] != 'A' &&
+			game->map_cpy[i - 1][j] != 'A' && game->map_cpy[i][j + 1] != 'A' &&
+			game->map_cpy[i][j - 1] != 'A')
 				return (0);
 		}
 	}

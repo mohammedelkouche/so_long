@@ -6,24 +6,12 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/13 15:01:39 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:37:01 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	free_all(char **map)
-// {
-// 	int	index;
-
-// 	index = 0;
-// 	while (map[index])
-// 	{
-// 		free(map[index]);
-// 		index++;
-// 	}
-// 	free(map);
-// }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -64,22 +52,34 @@ void	readmap(int fd, char *linemap, int len, t_info *game)
 		free(linemap);
 		linemap = get_next_line(fd);
 	}
-	game->divide = ft_split(sjoin, '\n');
+	game->map = ft_split(sjoin, '\n');
+	game->map_cpy = ft_split(sjoin, '\n');
 	if (!parsing(game, count, len, sjoin))
-		return ;
+		exit(1);
 	if (!check_path(game))
 	{
 		ft_printf("pathe not valid");
-		return ;
-		// exit(1);
+		exit(1);
 	}
-	// free_all(divide);
+	// free_all(map);
+}
+
+void	function_needed(int fd, t_info *game)
+{
+	int		len;
+	char	*linemap;
+
+
+	linemap = get_next_line(fd);
+	len = ft_strlen(linemap);
+	readmap(fd, linemap, len, game);
+	ft_graphic(game);
+	// ft_move(game);
 }
 
 int	main(int argc, char **argv)
 {
 	int		fd;
-	char	*linemap;
 	int		len;
 	t_info	game;
 
@@ -93,10 +93,7 @@ int	main(int argc, char **argv)
 			ft_printf("error in name of map");
 			exit(1);
 		}
-		linemap = get_next_line(fd);
-		len = ft_strlen(linemap);
-		readmap(fd, linemap, len, &game);
-		ft_graphic(&game);
+		function_needed(fd, &game);
 		// system("leaks a.out");
 	}
 	else
@@ -104,4 +101,4 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// gcc -lmlx -framework OpenGL -framework AppKit main.c Get-Next-Line/get_next_line.c Get-Next-Line/get_next_line_utils.c   libft/ft_split.c libft/ft_strchr.c parsing.c map_path.c ft_printf/ft_printf.c ft_printf/ft_putstr.c ft_printf/ft_putchar.c ft_printf/ft_format.c ft_printf/ft_putadrs.c ft_printf/ft_putnb_hexa.c ft_printf/ft_putnb_u.c ft_printf/ft_putnbr.c window.c
+// gcc -lmlx -framework OpenGL -framework AppKit main.c Get-Next-Line/get_next_line.c Get-Next-Line/get_next_line_utils.c   libft/ft_split.c libft/ft_strchr.c parsing.c map_path.c ft_printf/ft_printf.c ft_printf/ft_putstr.c ft_printf/ft_putchar.c ft_printf/ft_format.c ft_printf/ft_putadrs.c ft_printf/ft_putnb_hexa.c ft_printf/ft_putnb_u.c ft_printf/ft_putnbr.c window.c move.c

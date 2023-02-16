@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/14 21:21:26 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:40:16 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 #include <stdio.h>
 
 typedef struct s_info {
-	char	**divide;
-	int		p_x;
-	int		p_y;
+	char	**map;
+	char	**map_cpy;
+	int		px;
+	int		py;
+	int		ctclt;
 	int		w;
 	int		h;
-	void	*mlx;
+	void	*mx;
 	void	*win;
 	void	*ply;
 	void	*clt;
@@ -47,6 +49,8 @@ int		parsing(t_info *game, int count, int len, char *sjoin);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		check_path(t_info *game);
 void	ft_graphic(t_info *game);
-
+int		ft_click(int keycode, t_info *j);
+void	nbr_move(void);
+void	ft_close_window(t_info *j);
 
 #endif
