@@ -6,12 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/16 13:37:01 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/18 23:29:19 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -47,6 +46,7 @@ void	readmap(int fd, char *linemap, int len, t_info *game)
 		sjoin = ft_strdup("");
 	while (linemap)
 	{
+		check_newline(linemap);
 		sjoin = ft_strxjoin(sjoin, linemap);
 		count++;
 		free(linemap);
@@ -54,14 +54,12 @@ void	readmap(int fd, char *linemap, int len, t_info *game)
 	}
 	game->map = ft_split(sjoin, '\n');
 	game->map_cpy = ft_split(sjoin, '\n');
-	if (!parsing(game, count, len, sjoin))
-		exit(1);
+	parsing(game, count, len, sjoin);
 	if (!check_path(game))
 	{
 		ft_printf("pathe not valid");
-		exit(1);
+		free_all(game->map, game->map_cpy);
 	}
-	// free_all(map);
 }
 
 void	function_needed(int fd, t_info *game)
@@ -69,20 +67,27 @@ void	function_needed(int fd, t_info *game)
 	int		len;
 	char	*linemap;
 
-
 	linemap = get_next_line(fd);
+	if (!linemap)
+	{
+		ft_printf("wrong map");
+		exit(1);
+	}
 	len = ft_strlen(linemap);
 	readmap(fd, linemap, len, game);
 	ft_graphic(game);
-	// ft_move(game);
 }
+// void tst(void)
+// {
+// 	system("leaks a.out");
+// }
 
 int	main(int argc, char **argv)
 {
 	int		fd;
 	int		len;
 	t_info	game;
-
+	// atexit(tst);
 	if (argc == 2)
 	{
 		if (check_arg(argv[1]))
@@ -94,7 +99,6 @@ int	main(int argc, char **argv)
 			exit(1);
 		}
 		function_needed(fd, &game);
-		// system("leaks a.out");
 	}
 	else
 		ft_printf("numbre of arguments is not correct");

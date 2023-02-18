@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 09:25:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/16 15:16:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/18 23:24:29 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	check_wall_cpn(t_info *game, int count, int len, int i)
 	int	j;
 
 	i = -1;
-	while (++i < count)
+	while (++i < count && game->map[i])
 	{
 		j = -1;
+	// 	printf("%p\n", game->map[i]);
 		while (++j < len - 1)
 		{
 			if (i == 0 || i == (count - 1))
@@ -29,7 +30,7 @@ int	check_wall_cpn(t_info *game, int count, int len, int i)
 			}
 			if (j == 0 || j == len - 2)
 			{
-				if (game->map[i][j] != '1' || game->map[i][j] != '1')
+				if (game->map[i][j] != '1')
 					return (0);
 			}
 			if (game->map[i][j] != '1' && game->map[i][j] != '0' &&
@@ -81,24 +82,23 @@ int	check_regt(t_info *game, int count, int len)
 	return (1);
 }
 
-int	parsing(t_info *game, int count, int len, char *sjoin)
+void	parsing(t_info *game, int count, int len, char *sjoin)
 {
 	int	i;
 
 	if (!check_wall_cpn(game, count, len, i))
 	{
 		ft_printf("map not closed by walls or wrong component");
-		return (0);
+		free_all(game->map, game->map_cpy);
 	}
 	if (!check_nbcpn(game, sjoin, count, len))
 	{
 		ft_printf("number of components not valid");
-		return (0);
+		free_all(game->map, game->map_cpy);
 	}
 	if (!check_regt(game, count, len))
 	{
 		ft_printf("The map is not rectangular");
-		return (0);
+		free_all(game->map, game->map_cpy);
 	}
-	return (1);
 }

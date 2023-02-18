@@ -6,24 +6,11 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 11:38:08 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/16 21:32:21 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:29:38 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_all(char **map)
-{
-	int	index;
-
-	index = 0;
-	while (map[index])
-	{
-		free(map[index]);
-		index++;
-	}
-	free(map);
-}
 
 void	player_position(t_info *game)
 {
@@ -45,17 +32,16 @@ void	player_position(t_info *game)
 	}
 }
 
-
-void	floodfill(t_info *game, int py, int px)
+void	fillmap(t_info *game, int py, int px)
 {
 	if (game->map_cpy[py][px] == '1' || game->map_cpy[py][px] == 'E' ||
 	game->map_cpy[py][px] == 'A')
 		return ;
 	game->map_cpy[py][px] = 'A';
-	floodfill(game, py + 1, px);
-	floodfill(game, py - 1, px);
-	floodfill(game, py, px + 1);
-	floodfill(game, py, px - 1);
+	fillmap(game, py + 1, px);
+	fillmap(game, py - 1, px);
+	fillmap(game, py, px + 1);
+	fillmap(game, py, px - 1);
 }
 
 // verifier s'il exist 'C' nom replacer par 'A' and  check 'E' s'il est
@@ -67,7 +53,7 @@ int	check_path(t_info *game)
 
 	i = -1;
 	player_position(game);
-	floodfill(game, game->py, game->px);
+	fillmap(game, game->py, game->px);
 	while (game->map_cpy[++i])
 	{
 		j = -1;
