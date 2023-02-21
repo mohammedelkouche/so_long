@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:56:19 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/20 15:21:55 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:34:09 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,3 @@ int	ft_cross(t_info *j)
 	free_all(j->map, j->map_cpy);
 	return (0);
 }
-// int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
-// int	mlx_destroy_image(void *mlx_ptr, void *img_ptr);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/20 22:26:08 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:21:26 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 int	check_arg(char *arg)
 {
 	int		lengh;
-	char	*mapextension;
 
 	lengh = ft_strlen(arg);
 	if (ft_strncmp(".ber", &arg[lengh - 4], 4))
@@ -79,7 +78,6 @@ void	function_needed(int fd, t_info *game)
 int	main(int argc, char **argv)
 {
 	int		fd;
-	int		len;
 	t_info	game;
 
 	if (argc == 2)

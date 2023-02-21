@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:24:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/18 19:02:46 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:23:22 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_graphic(t_info *mp)
 	x = 0;
 	y = 0;
 	get_win_size(mp);
-	if (mp->wid * 50 > 2450 || mp->het *50 > 1250)
+	if (mp->wid * 50 > 2450 || mp->het * 50 > 1250)
 		free_all(mp->map, mp->map_cpy);
 	mp->mx = mlx_init();
 	if (mp->mx == NULL)
@@ -80,7 +80,7 @@ void	ft_graphic(t_info *mp)
 	}
 	assignment_texture(mp);
 	draw_image(mp, x, y);
-	mlx_key_hook(mp->win, ft_click, mp);
+	mlx_hook(mp->win, 2, 0, ft_click, mp);
 	mlx_hook(mp->win, 17, 0, ft_cross, mp);
 	mlx_loop(mp->mx);
 }

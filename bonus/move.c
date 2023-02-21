@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:55:54 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/20 15:20:48 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:37:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_move_right(t_info *j)
 	if (j->ctclt == 0)
 		opendoor(j);
 	if (j->map[j->py][j->px + 1] == 'E' && j->ctclt == 0)
+		ft_win_window(j);
+	if (j->map[j->py][j->px + 1] == 'M')
 		ft_close_window(j);
 	if (j->map[j->py][j->px + 1] != '1' && j->map[j->py][j->px + 1] != 'E')
 	{
@@ -40,6 +42,8 @@ void	ft_move_left(t_info *j)
 	if (j->ctclt == 0)
 		opendoor(j);
 	if (j->map[j->py][j->px - 1] == 'E' && j->ctclt == 0)
+		ft_win_window(j);
+	if (j->map[j->py][j->px - 1] == 'M')
 		ft_close_window(j);
 	if (j->map[j->py][j->px - 1] != '1' && j->map[j->py][j->px - 1] != 'E')
 	{
@@ -60,6 +64,8 @@ void	ft_move_up(t_info *j)
 	if (j->ctclt == 0)
 		opendoor(j);
 	if (j->map[j->py - 1][j->px] == 'E' && j->ctclt == 0)
+		ft_win_window(j);
+	if (j->map[j->py - 1][j->px] == 'M')
 		ft_close_window(j);
 	if (j->map[j->py - 1][j->px] != '1' && j->map[j->py - 1][j->px] != 'E')
 	{
@@ -80,6 +86,8 @@ void	ft_move_down(t_info *j)
 	if (j->ctclt == 0)
 		opendoor(j);
 	if (j->map[j->py + 1][j->px] == 'E' && j->ctclt == 0)
+		ft_win_window(j);
+	if (j->map[j->py + 1][j->px] == 'M')
 		ft_close_window(j);
 	if (j->map[j->py + 1][j->px] != '1' && j->map[j->py + 1][j->px] != 'E')
 	{

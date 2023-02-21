@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/18 23:29:52 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:35:34 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "ft_printf/ft_printf.h"
 # include <mlx.h>
 # include <stdlib.h>
-#include <stdio.h>
 
 typedef struct s_info {
 	char	**map;
@@ -44,7 +43,6 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
-int		checkwall(char **line, int count, int len);
 void	parsing(t_info *game, int count, int len, char *sjoin);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		check_path(t_info *game);

@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/18 23:29:19 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:21:08 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 int	check_arg(char *arg)
 {
 	int		lengh;
-	char	*mapextension;
 
 	lengh = ft_strlen(arg);
 	if (ft_strncmp(".ber", &arg[lengh - 4], 4))
@@ -35,7 +34,6 @@ int	check_arg(char *arg)
 	return (0);
 }
 
-// read map , push it in array 2 dimention
 void	readmap(int fd, char *linemap, int len, t_info *game)
 {
 	static char	*sjoin;
@@ -77,17 +75,12 @@ void	function_needed(int fd, t_info *game)
 	readmap(fd, linemap, len, game);
 	ft_graphic(game);
 }
-// void tst(void)
-// {
-// 	system("leaks a.out");
-// }
 
 int	main(int argc, char **argv)
 {
 	int		fd;
-	int		len;
 	t_info	game;
-	// atexit(tst);
+
 	if (argc == 2)
 	{
 		if (check_arg(argv[1]))
@@ -104,5 +97,3 @@ int	main(int argc, char **argv)
 		ft_printf("numbre of arguments is not correct");
 	return (0);
 }
-
-// gcc -lmlx -framework OpenGL -framework AppKit main.c Get-Next-Line/get_next_line.c Get-Next-Line/get_next_line_utils.c   libft/ft_split.c libft/ft_strchr.c parsing.c map_path.c ft_printf/ft_printf.c ft_printf/ft_putstr.c ft_printf/ft_putchar.c ft_printf/ft_format.c ft_printf/ft_putadrs.c ft_printf/ft_putnb_hexa.c ft_printf/ft_putnb_u.c ft_printf/ft_putnbr.c window.c move.c

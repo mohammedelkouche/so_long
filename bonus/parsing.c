@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 09:25:39 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/20 22:41:50 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:30:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	check_wall_cpn(t_info *game, int len, int i)
 {
 	int	j;
 
-	i = -1;
 	while (++i < game->count && game->map[i])
 	{
 		j = -1;
@@ -41,7 +40,7 @@ int	check_wall_cpn(t_info *game, int len, int i)
 	return (1);
 }
 
-int	check_nbcpn(t_info *game, char *sjoin, int len)
+int	check_nbcpn(t_info *game, char *sjoin)
 {
 	int	i;
 	int	ctplay;
@@ -51,6 +50,7 @@ int	check_nbcpn(t_info *game, char *sjoin, int len)
 	ctplay = 0;
 	ctexit = 0;
 	ctmnstr = 0;
+	game->ctclt = 0;
 	i = 0;
 	while (sjoin[i])
 	{
@@ -76,12 +76,10 @@ int	check_regt(t_info *game, int len)
 	i = 0;
 	while (game->map[i])
 	{
-		if (strlen(game->map[i]) != (len - 1))
+		if ((int)ft_strlen(game->map[i]) != (len - 1))
 			return (0);
 		i++;
 	}
-	if (game->count == len - 1)
-		return (0);
 	return (1);
 }
 
@@ -89,12 +87,13 @@ void	parsing(t_info *game, int len, char *sjoin)
 {
 	int	i;
 
+	i = -1;
 	if (!check_wall_cpn(game, len, i))
 	{
 		ft_printf("map not closed by walls or wrong component");
 		free_all(game->map, game->map_cpy);
 	}
-	if (!check_nbcpn(game, sjoin, len))
+	if (!check_nbcpn(game, sjoin))
 	{
 		ft_printf("number of components not valid");
 		free_all(game->map, game->map_cpy);
