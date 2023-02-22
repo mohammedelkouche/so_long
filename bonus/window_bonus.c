@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   window_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:24:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/22 11:00:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:51:13 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	assignment_texture(t_info *g)
 {
-	g->ply = mlx_xpm_file_to_image(g->mx, "man/textures/p.xpm",
-			&(g->w), &(g->h));
-	g->clt = mlx_xpm_file_to_image(g->mx, "man/textures/cl.xpm",
-			&(g->w), &(g->h));
-	g->ex = mlx_xpm_file_to_image(g->mx, "man/textures/cdr.xpm",
-			&(g->w), &(g->h));
-	g->wal = mlx_xpm_file_to_image(g->mx, "man/textures/wl.xpm",
-			&(g->w), &(g->h));
-	g->sp = mlx_xpm_file_to_image(g->mx, "man/textures/rd.xpm",
-			&(g->w), &(g->h));
-	if (!g->ply || !g->clt || !g->ex || !g->wal || !g->sp)
+	g->ply = mlx_xpm_file_to_image(g->mx, "textures/p.xpm", &(g->w), &(g->h));
+	g->clt = mlx_xpm_file_to_image(g->mx, "textures/cl.xpm", &(g->w), &(g->h));
+	g->ex = mlx_xpm_file_to_image(g->mx, "textures/cdr.xpm", &(g->w), &(g->h));
+	g->wal = mlx_xpm_file_to_image(g->mx, "textures/wl.xpm", &(g->w), &(g->h));
+	g->sp = mlx_xpm_file_to_image(g->mx, "textures/rd.xpm", &(g->w), &(g->h));
+	g->enm = mlx_xpm_file_to_image(g->mx, "textures/Rbr.xpm", &(g->w), &(g->h));
+	if (!g->ply || !g->clt || !g->ex || !g->wal || !g->sp || !g->enm)
 	{
 		ft_printf("Error in images\n");
 		free_all(g->map, g->map_cpy);
@@ -52,6 +48,8 @@ void	draw_image(t_info *g, int x, int y)
 				mlx_put_image_to_window(g->mx, g->win, g->ex, x * 50, y);
 			if (g->map[i][j] == '1')
 				mlx_put_image_to_window(g->mx, g->win, g->wal, x * 50, y);
+			if (g->map[i][j] == 'M')
+				mlx_put_image_to_window(g->mx, g->win, g->enm, x * 50, y);
 			x++;
 		}
 		y += 50;
@@ -73,24 +71,19 @@ void	ft_graphic(t_info *mp)
 
 	x = 0;
 	y = 0;
+	mp->dir = 'r';
 	get_win_size(mp);
 	if (mp->wid * 50 > 2450 || mp->het * 50 > 1250)
 		free_all(mp->map, mp->map_cpy);
 	mp->mx = mlx_init();
-	if (mp->mx == NULL)
-	{
-		free(mp->mx);
-		free_all(mp->map, mp->map_cpy);
-	}
+	protection(mp->mx, mp);
 	mp->win = mlx_new_window(mp->mx, mp->wid * 50, mp->het * 50, "so_long");
-	if (mp->win == NULL)
-	{
-		free(mp->win);
-		free_all(mp->map, mp->map_cpy);
-	}
+	protection(mp->win, mp);
 	assignment_texture(mp);
+	enemy(mp);
 	draw_image(mp, x, y);
 	mlx_hook(mp->win, 2, 0, ft_click, mp);
 	mlx_hook(mp->win, 17, 0, ft_cross, mp);
+	mlx_loop_hook(mp->mx, enemy_dir, mp);
 	mlx_loop(mp->mx);
 }
