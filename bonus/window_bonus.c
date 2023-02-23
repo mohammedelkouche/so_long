@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:24:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/22 23:51:13 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:06:39 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 void	assignment_texture(t_info *g)
 {
-	g->ply = mlx_xpm_file_to_image(g->mx, "textures/p.xpm", &(g->w), &(g->h));
-	g->clt = mlx_xpm_file_to_image(g->mx, "textures/cl.xpm", &(g->w), &(g->h));
-	g->ex = mlx_xpm_file_to_image(g->mx, "textures/cdr.xpm", &(g->w), &(g->h));
-	g->wal = mlx_xpm_file_to_image(g->mx, "textures/wl.xpm", &(g->w), &(g->h));
-	g->sp = mlx_xpm_file_to_image(g->mx, "textures/rd.xpm", &(g->w), &(g->h));
-	g->enm = mlx_xpm_file_to_image(g->mx, "textures/Rbr.xpm", &(g->w), &(g->h));
+	g->ply = mlx_xpm_file_to_image(g->mx, "bonus/textures/p.xpm",
+			&(g->w), &(g->h));
+	g->clt = mlx_xpm_file_to_image(g->mx, "bonus/textures/cl.xpm",
+			&(g->w), &(g->h));
+	g->ex = mlx_xpm_file_to_image(g->mx, "bonus/textures/cdr.xpm",
+			&(g->w), &(g->h));
+	g->wal = mlx_xpm_file_to_image(g->mx, "bonus/textures/wl.xpm",
+			&(g->w), &(g->h));
+	g->sp = mlx_xpm_file_to_image(g->mx, "bonus/textures/rd.xpm",
+			&(g->w), &(g->h));
+	g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/sen.xpm",
+			&(g->w), &(g->h));
 	if (!g->ply || !g->clt || !g->ex || !g->wal || !g->sp || !g->enm)
 	{
 		ft_printf("Error in images\n");

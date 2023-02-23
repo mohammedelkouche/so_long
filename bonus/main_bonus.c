@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:50:48 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/22 21:49:05 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/23 11:40:04 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	check_arg(char *arg)
 	return (0);
 }
 
-// read map , push it in array 2 dimention
 void	readmap(int fd, int len, t_info *game)
 {
 	static char	*sjoin;

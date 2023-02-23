@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:55:54 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/22 21:49:18 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:02:51 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_move_right(t_info *j)
 {
-	j->ply = mlx_xpm_file_to_image(j->mx, "textures/p_R.xpm", &(j->w), &(j->h));
+	j->ply = mlx_xpm_file_to_image(j->mx, "bonus/textures/p_R.xpm",
+			&(j->w), &(j->h));
 	if (j->map[j->py][j->px + 1] != '1')
 		print_move(j);
 	if (j->ctclt == 0)
@@ -37,7 +38,8 @@ void	ft_move_right(t_info *j)
 
 void	ft_move_left(t_info *j)
 {
-	j->ply = mlx_xpm_file_to_image(j->mx, "textures/p_L.xpm", &(j->w), &(j->h));
+	j->ply = mlx_xpm_file_to_image(j->mx, "bonus/textures/p_L.xpm",
+			&(j->w), &(j->h));
 	if (j->map[j->py][j->px - 1] != '1')
 		print_move(j);
 	if (j->ctclt == 0)
@@ -60,7 +62,8 @@ void	ft_move_left(t_info *j)
 
 void	ft_move_up(t_info *j)
 {
-	j->ply = mlx_xpm_file_to_image(j->mx, "textures/p.xpm", &(j->w), &(j->h));
+	j->ply = mlx_xpm_file_to_image(j->mx, "bonus/textures/p.xpm",
+			&(j->w), &(j->h));
 	if (j->map[j->py - 1][j->px] != '1')
 		print_move(j);
 	if (j->ctclt == 0)
@@ -83,7 +86,8 @@ void	ft_move_up(t_info *j)
 
 void	ft_move_down(t_info *j)
 {
-	j->ply = mlx_xpm_file_to_image(j->mx, "textures/p.xpm", &(j->w), &(j->h));
+	j->ply = mlx_xpm_file_to_image(j->mx, "bonus/textures/p.xpm",
+			&(j->w), &(j->h));
 	if (j->map[j->py + 1][j->px] != '1')
 		print_move(j);
 	if (j->ctclt == 0)
@@ -106,6 +110,8 @@ void	ft_move_down(t_info *j)
 
 int	ft_click(int keycode, t_info *j)
 {
+	(void)keycode;
+	(void)j;
 	if (keycode == 124)
 		ft_move_right(j);
 	else if (keycode == 123)

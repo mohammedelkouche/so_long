@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:15:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/22 23:41:15 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:04:24 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 // 		// printf("x = %d\t y = %d\n", g->enx, g->eny);
 // 		mlx_put_image_to_window(g->mx, g->win, g->sp, g->enx * 50, g->eny * 50);
 // 		g->enx += 1;
-// 		g->enm = mlx_xpm_file_to_image(g->mx, "textures/Rbr.xpm",
+// 		g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/Rbr.xpm",
 // 				&(g->w), &(g->h));
 // 		if (g->map[g->eny][g->enx] == 'P')
 // 			ft_close_window(g);
@@ -51,7 +51,7 @@
 // 	{
 // 		mlx_put_image_to_window(g->mx, g->win, g->sp, g->enx * 50, g->eny * 50);
 // 		g->enx -= 1;
-// 		g->enm = mlx_xpm_file_to_image(g->mx, "textures/Rbl.xpm",
+// 		g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/Rbl.xpm",
 // 				&(g->w), &(g->h));
 // 		if (g->map[g->eny][g->enx] == 'P')
 // 			ft_close_window(g);
@@ -118,7 +118,7 @@ void	enemy_move(t_info *g)
 	{
 		mlx_put_image_to_window(g->mx, g->win, g->sp, g->enx * 50, g->eny * 50);
 		g->enx += 1;
-		g->enm = mlx_xpm_file_to_image(g->mx, "textures/Rbr.xpm",
+		g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/Rbr.xpm",
 				&(g->w), &(g->h));
 		if (g->map[g->eny][g->enx] == 'P')
 			ft_close_window(g);
@@ -130,7 +130,7 @@ void	enemy_move(t_info *g)
 	{
 		mlx_put_image_to_window(g->mx, g->win, g->sp, g->enx * 50, g->eny * 50);
 		g->enx -= 1;
-		g->enm = mlx_xpm_file_to_image(g->mx, "textures/Rbl.xpm",
+		g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/Rbl.xpm",
 				&(g->w), &(g->h));
 		if (g->map[g->eny][g->enx] == 'P')
 			ft_close_window(g);
