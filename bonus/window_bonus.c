@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:24:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/23 12:06:39 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:04:20 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	assignment_texture(t_info *g)
 			&(g->w), &(g->h));
 	g->sp = mlx_xpm_file_to_image(g->mx, "bonus/textures/rd.xpm",
 			&(g->w), &(g->h));
-	g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/sen.xpm",
+	g->enm = mlx_xpm_file_to_image(g->mx, "bonus/textures/gr.xpm",
 			&(g->w), &(g->h));
 	if (!g->ply || !g->clt || !g->ex || !g->wal || !g->sp || !g->enm)
 	{

@@ -6,7 +6,7 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 23:20:37 by mel-kouc          #+#    #+#              #
-#    Updated: 2023/02/22 10:45:57 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/02/23 19:09:33 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,19 +32,20 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-bonus: $(OBJSB)
-	ar -cr $(NAME) $^
-
 $(NAME): $(OBJS)
-	ar -cr $@ $^
+	@ar -cr $@ $^
+
+bonus: $(OBJSB)
+	@ar -cr $(NAME) $^
+
 
 %.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(OBJSB)
+	@rm -f $(OBJS) $(OBJSB)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

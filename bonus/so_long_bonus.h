@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/23 11:51:38 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/23 21:16:58 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,5 @@ void	protection(void *failur, t_info *game);
 void	enemy(t_info *game);
 int		enemy_dir(t_info *g);
 void	ft_win_window(t_info *g);
-// void	ft_move_right(t_info *j);
-// void	ft_move_down(t_info *j);
-// void	ft_move_up(t_info *j);
-// void	ft_move_left(t_info *j);
 
 #endif
