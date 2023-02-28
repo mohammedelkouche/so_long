@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:38:33 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/23 19:14:20 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:24:46 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	nbr_move(void);
 void	ft_close_window(t_info *j);
 int		ft_cross(t_info *j);
 void	free_all(char **map, char **map_cpy);
+void	protection(void *failur, t_info *game);
 void	check_newline(char *linemap);
 
 #endif

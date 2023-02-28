@@ -6,14 +6,14 @@
 #    By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/18 22:54:17 by mel-kouc          #+#    #+#              #
-#    Updated: 2023/02/23 20:03:31 by mel-kouc         ###   ########.fr        #
+#    Updated: 2023/02/28 12:44:06 by mel-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 BNAME = so_long_bonus
 
-SRC = man/main.c man/parsing.c man/map_path.c man/window.c man/move.c man/closewin.c
+SRC = man/main.c man/parsing.c man/map_path.c man/window.c man/move.c man/closewin.c man/failure.c
 BONUS = bonus/main_bonus.c bonus/parsing_bonus.c bonus/map_path_bonus.c bonus/window_bonus.c bonus/move_bonus.c bonus/closewin_bonus.c bonus/door_bonus.c bonus/failure_bonus.c bonus/enemy_bonus.c
 
 
@@ -56,4 +56,4 @@ fclean : clean
 
 re : fclean all
 
-.phoney : re fclean clean all
+.phony : re fclean clean all

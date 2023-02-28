@@ -6,7 +6,7 @@
 /*   By: mel-kouc <mel-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:24:34 by mel-kouc          #+#    #+#             */
-/*   Updated: 2023/02/22 11:00:58 by mel-kouc         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:25:55 by mel-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,14 @@ void	ft_graphic(t_info *mp)
 	y = 0;
 	get_win_size(mp);
 	if (mp->wid * 50 > 2450 || mp->het * 50 > 1250)
+	{
+		ft_printf("width and height of map is greater than screen");
 		free_all(mp->map, mp->map_cpy);
+	}
 	mp->mx = mlx_init();
-	if (mp->mx == NULL)
-	{
-		free(mp->mx);
-		free_all(mp->map, mp->map_cpy);
-	}
+	protection(mp->mx, mp);
 	mp->win = mlx_new_window(mp->mx, mp->wid * 50, mp->het * 50, "so_long");
-	if (mp->win == NULL)
-	{
-		free(mp->win);
-		free_all(mp->map, mp->map_cpy);
-	}
+	protection(mp->win, mp);
 	assignment_texture(mp);
 	draw_image(mp, x, y);
 	mlx_hook(mp->win, 2, 0, ft_click, mp);
